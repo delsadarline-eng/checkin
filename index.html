@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="Sign in to claim your free business audit — Passed Pawn Premier Strategies">
+<title>Sign In | Passed Pawn Premier Strategies</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --black:      #0D0D0D;
+  --brown:      #3D1A14;
+  --gold:       #C9A84C;
+  --gold-light: #E2C97E;
+  --gold-dark:  #8B6914;
+  --cream:      #EDE5CE;
+  --cream-light:#F7F2E7;
+  --cream-mid:  #F0E8D5;
+  --white:      #FFFFFF;
+  --gray:       #888;
+  --text:       #1A1A1A;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  min-height: 100%;
+  background: var(--cream-light);
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ── Chess strips ── */
+.chess { display: flex; height: 10px; width: 100%; flex-shrink: 0; }
+.chess span { flex: 1; }
+.chess.dk span:nth-child(odd)  { background: var(--black); }
+.chess.dk span:nth-child(even) { background: var(--cream); }
+.chess.gd span:nth-child(odd)  { background: var(--gold); }
+.chess.gd span:nth-child(even) { background: var(--cream-light); }
+.gold-bar { height: 3px; background: var(--gold); display: block; }
+.thin-bar { height: 1px; background: var(--gold-light); display: block; }
+
+/* ── Header ── */
+.header {
+  background: var(--black);
+  padding: 22px 20px 18px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-conic-gradient(#1a1a1a 0% 25%, transparent 0% 50%);
+  background-size: 20px 20px;
+  opacity: 0.35;
+}
+.header-inner { position: relative; z-index: 1; }
+.brand-label {
+  font-size: 8px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  color: var(--white);
+  font-style: italic;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.header h1 em { color: var(--gold); font-style: normal; }
+.header p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: var(--cream);
+  font-style: italic;
+}
+
+/* ── Ornament ── */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px 4px;
+}
+.orn-line { flex: 1; height: 1px; }
+.orn-line.l { background: linear-gradient(to right, transparent, var(--gold)); }
+.orn-line.r { background: linear-gradient(to left,  transparent, var(--gold)); }
+.orn-crown { font-size: 17px; color: var(--gold); }
+
+/* ── Form ── */
+.form-wrap { padding: 8px 20px 32px; }
+.form-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--text);
+  text-align: center;
+  margin: 12px 0 4px;
+}
+.form-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  color: var(--gray);
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 22px;
+}
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  color: var(--gold-dark);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.field input {
+  width: 100%;
+  padding: 13px 14px;
+  background: var(--white);
+  border: 1px solid var(--cream-mid);
+  border-bottom: 2px solid var(--gold-light);
+  color: var(--text);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  outline: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.field input:focus {
+  border-bottom-color: var(--gold);
+  background: var(--cream-light);
+}
+.field input::placeholder { color: #ccc; font-size: 13px; font-style: italic; }
+.req { color: var(--gold); margin-left: 2px; }
+
+.btn-submit {
+  width: 100%;
+  padding: 17px;
+  background: var(--black);
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-submit:active { background: var(--gold); color: var(--black); transform: scale(0.98); }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.error-box {
+  display: none;
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  font-size: 11px;
+  padding: 9px 12px;
+  margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+.error-box.show { display: block; }
+
+/* ── Success ── */
+.success-wrap {
+  display: none;
+  padding: 40px 24px;
+  text-align: center;
+}
+.success-wrap.show { display: block; }
+.success-crown { font-size: 56px; color: var(--gold); margin-bottom: 14px; }
+.success-wrap h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.success-wrap h2 em { color: var(--gold-dark); font-style: italic; }
+.success-wrap p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  color: var(--gray);
+  font-style: italic;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.success-pill {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--black);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+}
+
+/* ── Footer ── */
+.footer {
+  background: var(--black);
+  text-align: center;
+  padding: 14px 20px 22px;
+}
+.footer p { font-size: 8px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+.footer small { font-size: 7px; color: var(--gray); }
+</style>
+</head>
+<body>
+
+<div class="chess dk"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<div class="gold-bar"></div>
+
+<div class="header">
+  <div class="header-inner">
+    <p class="brand-label">Passed Pawn Premier Strategies</p>
+    <h1>Welcome, <em>Strategist</em></h1>
+    <p>Sign in to claim your free business audit</p>
+  </div>
+</div>
+
+<div class="gold-bar"></div>
+<div class="chess gd"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+<div class="ornament">
+  <div class="orn-line l"></div>
+  <span class="orn-crown">♛</span>
+  <div class="orn-line r"></div>
+</div>
+
+<!-- FORM -->
+<div class="form-wrap" id="formSection">
+  <h2 class="form-title">Make Your Move</h2>
+  <p class="form-sub">Enter your details below to get started</p>
+
+  <div class="error-box" id="errorBox">Please fill in all required fields.</div>
+
+  <div class="field">
+    <label>Full Name <span class="req">*</span></label>
+    <input type="text" id="name" placeholder="First and Last Name" autocomplete="name">
+  </div>
+  <div class="field">
+    <label>Email Address <span class="req">*</span></label>
+    <input type="email" id="email" placeholder="you@yourbusiness.com" autocomplete="email" inputmode="email">
+  </div>
+  <div class="field">
+    <label>Business Name <span class="req">*</span></label>
+    <input type="text" id="company" placeholder="Your Business Name" autocomplete="organization">
+  </div>
+  <div class="field">
+    <label>Website</label>
+    <input type="url" id="website" placeholder="www.yourbusiness.com" inputmode="url">
+  </div>
+
+  <button class="btn-submit" id="submitBtn" onclick="handleSubmit()">
+    ♟ &nbsp; Sign Me In
+  </button>
+</div>
+
+<!-- SUCCESS -->
+<div class="success-wrap" id="successSection">
+  <div class="success-crown">♛</div>
+  <h2>You're <em>In!</em></h2>
+  <p>
+    Your personalized business audit<br>
+    is being prepared right now.<br><br>
+    Watch for it in your inbox<br>
+    before you leave the room.
+  </p>
+  <div class="success-pill">No Fluff · Tough Love · Real Results</div>
+</div>
+
+<div class="thin-bar"></div>
+<div class="chess dk"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<div class="gold-bar"></div>
+
+<div class="footer">
+  <p>Passed Pawn Premier Strategies</p>
+  <small>passedpawnpremier.com &nbsp;·&nbsp; No Fluff. Tough Love. Real Results.</small>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxPQ0kNluB1VNTNIYIqKhHHaXoHF_ou1AqQalU4LYdCsGnDUGVr4ppfs1-5CigpdXkp/exec';
+
+async function handleSubmit() {
+  const name    = document.getElementById('name').value.trim();
+  const email   = document.getElementById('email').value.trim();
+  const company = document.getElementById('company').value.trim();
+  const website = document.getElementById('website').value.trim();
+  const btn     = document.getElementById('submitBtn');
+  const errBox  = document.getElementById('errorBox');
+
+  // Validate
+  if (!name || !email || !company) {
+    errBox.textContent = 'Please fill in all required fields.';
+    errBox.classList.add('show');
+    return;
+  }
+  if (!email.includes('@')) {
+    errBox.textContent = 'Please enter a valid email address.';
+    errBox.classList.add('show');
+    return;
+  }
+
+  errBox.classList.remove('show');
+  btn.disabled = true;
+  btn.textContent = 'Signing you in...';
+
+  const payload = {
+    name,
+    email,
+    company,
+    website,
+    checked_in: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+  };
+
+  try {
+    // Google Apps Script requires no-cors for POST from external pages
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    // no-cors means we can't read the response — but if no error thrown, it worked
+    document.getElementById('formSection').style.display = 'none';
+    document.getElementById('successSection').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = '♟  Sign Me In';
+    errBox.textContent = 'Something went wrong. Please try again.';
+    errBox.classList.add('show');
+  }
+}
+
+// Allow Enter key to submit
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') handleSubmit();
+});
+</script>
+</body>
+</html>
